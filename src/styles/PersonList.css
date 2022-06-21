@@ -1,14 +1,10 @@
-.list-container{
-    width: 350px; 
-    height: 100vh;   
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    background: #FFFFFF;
-    box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.15);
+.list-container {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  background: #ffffff;
+  box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.15);
 }
-
-/* .list div {
-    width: 350;    
-} */

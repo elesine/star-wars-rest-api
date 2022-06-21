@@ -2,14 +2,17 @@ import "./App.css";
 import Header from "./components/Header.js";
 import PersonList from "./components/PersonList.js";
 import PersonInfo from "./components/PersonInfo.js";
+import { useState } from "react";
 
 function App() {
+  const [selectedPerson, setSelectedPerson] = useState("");
+
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <div className="content">
-        <PersonList/>
-        <PersonInfo/>
+        <PersonList setSelectedPerson={setSelectedPerson}/>
+        <PersonInfo selectedPerson={selectedPerson}/>
       </div>
     </div>
   );
