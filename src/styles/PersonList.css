@@ -8,3 +8,10 @@
   background: #ffffff;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.15);
 }
+
+.loading {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 20px;
+  color: #333333;
+}

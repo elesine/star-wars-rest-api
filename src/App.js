@@ -6,13 +6,13 @@ import { useState } from "react";
 
 function App() {
   const [selectedPerson, setSelectedPerson] = useState("");
-
+  const firstUrl = "https://swapi.dev/api/people/";
   return (
     <div className="App">
       <Header />
       <div className="content">
-        <PersonList setSelectedPerson={setSelectedPerson}/>
-        <PersonInfo selectedPerson={selectedPerson}/>
+        <PersonList url={firstUrl} setSelectedPerson={setSelectedPerson} />
+        <PersonInfo selectedPerson={selectedPerson} />
       </div>
     </div>
   );

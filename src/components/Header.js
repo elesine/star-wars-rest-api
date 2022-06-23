@@ -3,7 +3,7 @@ import "../styles/Header.css";
 function Header() {
   return (
     <div className="header">
-      <div className="text">Ravn Star Wars Registry</div>
+      <div className="text">Star Wars Registry</div>
     </div>
   );
 }

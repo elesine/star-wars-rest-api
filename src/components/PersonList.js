@@ -1,42 +1,35 @@
-import { useMemo, useState, useEffect } from "react";
 //import LoadingCell from './LoadingCell.js';
 import "../styles/PersonList.css";
 import PersonItem from "./PersonItem.js";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import callApi from "../CallApi";
 
-function PersonList({ setSelectedPerson }) {
-  // const loadingCellRenderer = useMemo(() => {
-  //     return LoadingCell;
-  //   }, []);
-  // const loadingCellRendererParams = useMemo(() => {
-  //     return {
-  //       loadingMessage: 'One moment please...',
-  //     };
-  // }, []);
+function PersonList({ url, setSelectedPerson }) {
   const [listPerson, setListPerson] = useState("");
-
-  const callApi = async (url) => {
-    try {
-      const response = await axios.get(url);
-      if (response.status === 200) setListPerson(response.data.results);
-    } catch (error) {
-      console.log("Error Endpoint: ", url);
-      console.log(error);
-      alert("Error List Person", error.status);
-    }
-  };
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    callApi("https://swapi.dev/api/people/");
-  },[]);
+    callApi(url, setListPerson);
+    setLoading((isLoading) => false);
+  }, [url]);
+
+  if (isLoading) {
+    return <div className="list-container loading"> Loading...</div>;
+  }
 
   return (
     <div className="list-container">
-      {listPerson? (<PersonItem  person={listPerson[0]} setSelectedPerson={setSelectedPerson}/>) : null}
-      {listPerson? (<PersonItem  person={listPerson[1]} setSelectedPerson={setSelectedPerson}/>) : null}
-      {listPerson? (<PersonItem  person={listPerson[2]} setSelectedPerson={setSelectedPerson}/>) : null}
+      {listPerson
+        ? listPerson.results.map((person, index) => (
+            <PersonItem
+              key={index}
+              person={person}
+              setSelectedPerson={setSelectedPerson}
+            />
+          ))
+        : null}
+      {/* <PersonList url={listPerson.next} setSelectedPerson={setSelectedPerson} />  */}
     </div>
   );
 }
-
 export default PersonList;

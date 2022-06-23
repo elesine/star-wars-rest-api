@@ -1,16 +1,15 @@
 import "../styles/PersonInfo.css";
+import VehicleItem from "./VehicleItem";
 
-function PersonInfo({selectedPerson}) {
+function PersonInfo({ selectedPerson }) {
+  const vehicles = selectedPerson.vehicles;
 
-  const vehicles=selectedPerson.vehicles;
   return (
     <div className="info-container">
       <div className="title-info">General Information</div>
       <div className="row">
         <div className="feature">Eye Color</div>
         <div className="data">{selectedPerson.eye_color}</div>
-        {console.log(selectedPerson)}
-
       </div>
       <div className="row">
         <div className="feature">Hair Color</div>
@@ -24,20 +23,15 @@ function PersonInfo({selectedPerson}) {
         <div className="feature">Birth Year</div>
         <div className="data">{selectedPerson.birth_year}</div>
       </div>
-      {/* TO DO: add vehicles  */}
+
       <div className="title-info">Vehicles</div>
-
-      <div className="row">
-        <div className="feature">Imperial Speeder Bike</div>
-      </div>
-
-
-      { vehicles? vehicles.map( (vehicle) =>  
-        <div className="row">
-            <div className="feature">{vehicle}</div>
-        </div> ) : null
-      }
-
+      {vehicles
+        ? vehicles.map((vehicle) => (
+            <div key={`${vehicle}-row`} className="row feature">
+              <VehicleItem urlVehicle={vehicle}></VehicleItem>
+            </div>
+          ))
+        : null}
     </div>
   );
 }
